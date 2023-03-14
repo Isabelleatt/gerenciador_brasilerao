@@ -1,34 +1,39 @@
 package com.insper.gerenciadorBrasileirao.partida;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.insper.gerenciadorBrasileirao.Time.Time;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Partida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
 
-    @NonNull
     private Integer scoreHome;
-
-    @NonNull
     private Integer scoreAway;
 
-    @NonNull
     private Integer attendance;
-    private LocalDateTime gameDate = LocalDateTime.now();
+    private LocalDateTime gameDate;
     private String identifier;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name="id_home")
+    private Time home;
+
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name="id_away")
+    private Time away;
+
 
 
 }

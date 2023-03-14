@@ -20,18 +20,13 @@ public class PartidaController {
     }
 
     @PostMapping
-    public Partida salvarPartida(@RequestBody @Valid Partida partida) {
-        return partidaService.SalvarPartida(partida);
+    public Partida criarPartida(@RequestBody @Valid Partida partida) {
+        return partidaService.CriarPartida(partida);
     }
 
     @PutMapping("/{identifier}")
     public Partida atualizarPartida(@PathVariable String identifier, @RequestBody @Valid Partida partida) {
-        Partida partidaEncontrada = partidaService.BurcarPartida(identifier);
-        partidaEncontrada.setScoreAway(partida.getScoreAway());
-        partidaEncontrada.setScoreHome(partida.getScoreHome());
-        partidaEncontrada.setAttendance(partida.getAttendance());
-        partidaEncontrada.setGameDate(partida.getGameDate());
-        partidaEncontrada.setIdentifier(partida.getIdentifier());
-        return partidaService.SalvarPartida(partidaEncontrada);
+
+        return partidaService.AtualizarPartida(identifier, partida);
     }
 }
