@@ -43,7 +43,7 @@ public class PartidaService {
         partida_original.setScoreHome(partida.getScoreHome());
 
 
-        return partidaRepository.save(partida);
+        return partidaRepository.save(partida_original);
     }
 
     public List<Partida> ListarPartidas() {
